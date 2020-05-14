@@ -41,11 +41,13 @@ public class ClientServiceImplementation implements ClientServices {
 		
 	}
 
+	@Override
 	public List<PersonalDetails> getClientList() {
 		
 		return this.cr.findAll();
 	}
 
+	@Override
 	public PersonalDetails getClientByID(long clientId) {
 		
 		Optional <PersonalDetails> clientDB = this.cr.findById(clientId);
@@ -59,6 +61,7 @@ public class ClientServiceImplementation implements ClientServices {
 		
 	}
 
+	@Override
 	public void deleteClient(long id) {
 		
 		Optional <PersonalDetails> clientDB = this.cr.findById(id);
@@ -67,5 +70,4 @@ public class ClientServiceImplementation implements ClientServices {
 			this.cr.delete(clientDB.get());
 		}
 	}
-
 }
