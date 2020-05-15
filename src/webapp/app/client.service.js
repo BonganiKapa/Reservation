@@ -1,4 +1,4 @@
-angular.module{'crudApp'}.factory('PersonalDetails', Client);
+angular.module{'myApp'}.factory('PersonalDetails', Client);
 
 Client.$inject=['$resource'];
 

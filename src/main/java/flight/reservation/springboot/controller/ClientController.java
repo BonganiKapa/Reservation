@@ -1,9 +1,12 @@
 package flight.reservation.springboot.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -17,7 +20,7 @@ public class ClientController {
 	@Autowired
 	private ClientServices cs;
 	
-	@GetMapping("/client")
+	@PostMapping("/client")
 	public ResponseEntity <PersonalDetails> registerClient(@RequestBody PersonalDetails client){
 		return ResponseEntity.ok().body(this.cs.createClient(client));
 	}
@@ -28,5 +31,14 @@ public class ClientController {
 		return ResponseEntity.ok().body(this.cs.updateClient(client));
 	}
 	
+	@DeleteMapping("/client/{id}")
+	public HttpStatus deleteClient(@PathVariable long id) {
+		this.cs.deleteClient(id);
+		return HttpStatus.OK;
+	}
 	
+	@GetMapping("client/{email}")
+	public ResponseEntity <PersonalDetails> getClientByEmail(@PathVariable String email){
+		return ResponseEntity.ok().body(cs.getClientByEmail(email));
+	}
 }

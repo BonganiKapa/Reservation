@@ -12,7 +12,7 @@ public interface ClientServices {
 	
 	List <PersonalDetails> getClientList();
 	
-	PersonalDetails getClientByID(long clientId);
+	PersonalDetails getClientByEmail(String email);
 	
 	void deleteClient(long id);
 

@@ -1,4 +1,4 @@
-angular.module("crudApp").controller("GeneralController", GeneralController);
+angular.module("myApp").controller("GeneralController", GeneralController);
 
 GeneralController.inject = ['$scope', 'PersonalDetails'];
 
