@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import flight.reservation.springboot.model.PersonalDetails;
@@ -41,4 +42,10 @@ public class ClientController {
 	public ResponseEntity <PersonalDetails> getClientByEmail(@PathVariable String email){
 		return ResponseEntity.ok().body(cs.getClientByEmail(email));
 	}
+	
+//	@RequestMapping("/Login.html")
+//	public ResponseEntity <PersonalDetails> clientLogin(@PathVariable String email, String password){
+//		
+//		return "Login.html";
+//	}
 }

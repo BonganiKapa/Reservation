@@ -32,6 +32,9 @@ public class ClientServiceImplementation implements ClientServices {
 			clientUpdate.setId(client.getId());
 			clientUpdate.setName(client.getName());
 			clientUpdate.setSurname(client.getSurname());
+			clientUpdate.setCell(client.getCell());
+			clientUpdate.setPhone(client.getPhone());
+			clientUpdate.setAddress(client.getAddress());
 			cr.save(clientUpdate);
 			return clientUpdate;
 		}
@@ -47,7 +50,7 @@ public class ClientServiceImplementation implements ClientServices {
 		return this.cr.findAll();
 	}
 
-	@Override
+	//@Override
 	public PersonalDetails getClientByID(long clientId) {
 		
 		Optional <PersonalDetails> clientDB = this.cr.findById(clientId);
@@ -69,5 +72,11 @@ public class ClientServiceImplementation implements ClientServices {
 		if(clientDB.isPresent()) {
 			this.cr.delete(clientDB.get());
 		}
+	}
+
+	@Override
+	public PersonalDetails getClientByEmail(String email) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

@@ -11,3 +11,8 @@ function Client($resource){
 		}
 			});
 }
+
+angular.module('formValidationApp', [])
+.controller('ValidationCtrl', function (){
+
+})

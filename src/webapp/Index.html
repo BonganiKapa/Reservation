@@ -1,34 +1,132 @@
 <!DOCTYPE html>
 <html>
-<div ng-app="myApp" ng-controller="GeneralController"></div>
+<!-- <div ng-app="myApp" ng-controller="GeneralController"></div> -->
 <head>
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<title></title>
+<script type="text/javascript"
+	src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.3/angular.min.js"></script>
+<script type="text/javascript"
+	src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.3/angular-resource.js"></script>
+<script type="text/javascript" src="app/app.js"></script>
+<script type="text/javascript" src="app/general.controller.js"></script>
+<script type="text/javascript" src="app/client.service.js"></script>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+<!-- Optional theme -->
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css">
+
+<!-- Latest compiled and minified JavaScript -->
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
-<body>
-<div ng-controller="GeneralController">
-  <form novalidate class="css-form">
-    <label>Name: <input type="text" ng-model="user.name" required /></label><br />
-    <label>Surname: <input type="text" ng-model="user.lastName" required /></label><br />
-    Gender: <label><input type="radio" ng-model="user.gender" value="male" />male</label>
-    <label><input type="radio" ng-model="user.gender" value="female" />female</label><br />
-    <label>E-mail: <input type="email" ng-model="user.email" required /></label><br />
-    <input type="button" ng-click="reset()" value="Reset" />
-    <input type="submit" ng-click="update(user)" value="Save" />
-  </form>
-  <pre>user = {{user | json}}</pre>
-  <pre>master = {{master | json}}</pre>
-</div>
+<body ng-app = "myApp" ng-controller = "GeneralController">
 
-<style type="text/css">
-  .css-form input.ng-invalid.ng-touched {
-    background-color: #FA787E;
-  }
+ 	<div class="panel panel-default">
+		<div class="panel-heading">Register Client</div>
+		<div class="panel-body">
+			<form class="col-md-4" ng-submit="saveEmployee()">
+				<div class="form-group">
+					<label for="name">Name</label> <input type="text"
+						ng-model="client.name" class="form-control" id="name"
+						placeholder="Name" required>
+				</div>
+				<div class="form-group">
+					<label for="surname">Surname</label> <input type="text"
+						ng-model="client.surname" class="form-control" id="surname"
+						placeholder="Surname" required>
+				</div>
+				<div class="form-group">
+					<label for="idNum">ID Number</label> <input type="text"
+						ng-model="client.idNum" class="form-control" id="idNum"
+						placeholder="ID/Passport Number" required>
+				</div>
+				<div class="form-group">
+					Gender: <label><input type="radio" ng-model="client.gender" value="male" />male</label>
+    				<label><input type="radio" ng-model="client.gender" value="female" />female</label><br />
+				</div>
+				<div class="form-group">
+					<label for="cell">Cell Phone</label> <input type="text"
+						ng-model="client.cell" class="form-control"
+						id="cell" placeholder="Cell Phone" required>
+				</div>
+				<div class="form-group">
+					<label for="phone">Phone</label> <input type="text"
+						ng-model="client.phone" class="form-control" id="phone"
+						placeholder="Phone">
+				</div>
+				<div class="form-group">
+					<label for="email">Email</label> 
+					<input type="email"
+						ng-model="client.email" class="form-control"
+						id="email" placeholder="Email">
+				</div>
+				<div class="form-group">
+					<label for="address">Address</label> <input type="text"
+						ng-model="client.address" class="form-control" id="address"
+						placeholder="Address" required>
+				</div>
+				<div class="form-group">
+					<label for="password">Password</label> <input type="password"
+						ng-model="client.password" class="form-control" id="password"
+						placeholder="Password" ng-minLength="8" required>
+				</div>
+				<div class="form-group">
+					<label for="repassowrd">Repeat Password</label> <input type="password"
+						ng-model="client.repassowrd" class="form-control" id="repassowrd"
+						placeholder="Repeat Password" ng-minLength="8" required>
+				</div>
+				
+				
+				
 
-  .css-form input.ng-valid.ng-touched {
-    background-color: #78FA89;
-  }
-</style>
+				<button type="submit" class="btn btn-default">{{buttonText}}</button>
+				
+			</form>
+
+			<div class="table-responsive col-md-6">
+				<table class="table table-striped">
+					<tr>
+						<th>Name</th>
+						<th>Surname</th>
+						<th>ID Number</th>
+						<th>Gender</th>
+						<th>Cell Phone</th>
+						<th>Phone</th>
+						<th>Email</th>
+						<th>Address</th>
+					</tr>
+					<tr ng-repeat="client in clients">
+						<td>{{client.name}}</td>
+						<td>{{client.surname}}</td>
+						<td>{{client.idNum}}</td>
+						<td>{{client.gender}}</td>
+						<td>{{client.cell}}</td>
+						<td>{{client.phone}}</td>
+						<td>{{client.email}}</td>
+						<td>{{client.address}}</td>
+						<td>
+							<button type="button" class="btn btn-default"
+								ng-click="updateClientInit(client)">
+								<span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+							</button>
+							<button type="button" class="btn btn-default"
+								ng-click="deleteClient(client)">
+								<span class="glyphicon glyphicon-remove-circle"
+									aria-hidden="true"></span>
+							</button>
+						</td>
+					</tr>
+				</table>
+			</div>
+		</div>
+	</div>
 
 </body>
 </html>

@@ -17,6 +17,7 @@ public class PersonalDetails {
 	
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "client_id")
 	private Long id;
 	@Column(name = "name")
 	private String name;
@@ -129,7 +130,4 @@ public class PersonalDetails {
 	public void setRepasssword(String repasssword) {
 		this.repasssword = repasssword;
 	}
-
-	
-	
 }
