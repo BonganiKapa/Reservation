@@ -4,6 +4,8 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -13,17 +15,18 @@ import flight.reservation.springboot.repository.ClientRepository;
 
 @Service
 @Transactional
+@Primary
 public class ClientServiceImplementation implements ClientServices {
 
-	@Autowired
+	//@Autowired
 	private ClientRepository cr;
 	
-	@Override
+	//@Override
 	public PersonalDetails createClient(PersonalDetails client) {
 		return cr.save(client);
 	}
 
-	@Override
+	//@Override
 	public PersonalDetails updateClient(PersonalDetails client) {
 		Optional <PersonalDetails> clientDB = this.cr.findById(client.getId());
 		
@@ -44,7 +47,7 @@ public class ClientServiceImplementation implements ClientServices {
 		
 	}
 
-	@Override
+	//@Override
 	public List<PersonalDetails> getClientList() {
 		
 		return this.cr.findAll();
@@ -64,7 +67,7 @@ public class ClientServiceImplementation implements ClientServices {
 		
 	}
 
-	@Override
+	//@Override
 	public void deleteClient(long id) {
 		
 		Optional <PersonalDetails> clientDB = this.cr.findById(id);
@@ -74,9 +77,8 @@ public class ClientServiceImplementation implements ClientServices {
 		}
 	}
 
-	@Override
+	//@Override
 	public PersonalDetails getClientByEmail(String email) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 }
