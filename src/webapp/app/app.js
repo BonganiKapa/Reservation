@@ -22,8 +22,8 @@
  
     run.$inject = ['$rootScope', '$location', '$http', '$window'];
     function run($rootScope, $location, $http, $window) {
-        var userData = $window.sessionStorage.getItem('clientData');
-        if (userData) {
+        var clientData = $window.sessionStorage.getItem('clientData');
+        if (clientData) {
             $http.defaults.headers.common['Authorization']
               = 'Basic ' + JSON.parse(userData).authData;
         }
